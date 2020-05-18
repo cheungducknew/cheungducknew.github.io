@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hexo _文章管理</title>
+    <url>/2020/05/15/Hexo%20_%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="npm-命令："><a href="#npm-命令：" class="headerlink" title="npm 命令："></a>npm 命令：</h1><h1 id="hexo-命令："><a href="#hexo-命令：" class="headerlink" title="hexo 命令："></a>hexo 命令：</h1><p>hexo clean</p>
+<p>hexo n : new</p>
+<p>hexo g : generate</p>
+<p>hexo s : server</p>
+<blockquote>
+<p>localhost:4000/</p>
+</blockquote>
+<p>hexo d : deploy</p>
+<p>hexo init : 初始化</p>
+<p>hexo version</p>
+<h1 id="其他命令："><a href="#其他命令：" class="headerlink" title="其他命令："></a>其他命令：</h1><p>cd 进入目录</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Blog</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Book_list</title>
+    <url>/2020/05/17/Book_list/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ol>
+<li>《奇特的一生》-柳比歇夫</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Books</category>
+      </categories>
+      <tags>
+        <tag>book</tag>
+        <tag>list</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo_认识文件</title>
+    <url>/2020/05/15/Hexo_%E8%AE%A4%E8%AF%86%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ul>
+<li><p>node_modules: 依赖包</p>
+</li>
+<li><p>public：存放生成的页面，运行 hexo g 便会生成，而 hexo clean 便会删除</p>
+</li>
+<li><p>scaffolds：生成文章的一些模板</p>
+</li>
+<li><p>source：用来存放你的文章</p>
+</li>
+<li><p>themes：主题</p>
+</li>
+<li><p>_config.yml: 配置文件</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Blog</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Essay_纸上和网上写作</title>
+    <url>/2020/05/16/Essay_%E7%BA%B8%E4%B8%8A%E5%92%8C%E7%BD%91%E4%B8%8A%E5%86%99%E4%BD%9C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>emmm…在高中的时候，我就不怎么喜欢在网上阅读和写作。</p>
+<p>想了想，可能是因为在网上写的时候，错了可以改，有大段的文字可以复制，而且很多要写的东西又有字数要求。所以我就想着先动笔，虽然对总体架构还不清楚，但还是先写着，想到什么写什么，查到什么就复制什么，结果就是大半天都不能完工。</p>
+<p>在纸上写的时候，我就会先列好提纲，先想好怎么写。因为写上之后就不会修改，所以就会务求先有胸臆，后再下笔。</p>
+<p>说到阅读，我好像发现，现在大学都过了一年了，我分析文章的能力和高中相比就没怎么变化。比如迅速抓到重点的能力和快速记录（记忆)的能力。</p>
+<p>写在纸上我又懒得整理，也容易丢。以后就记录在博客上吧，说不定还能和曹天元一样（逃）</p>
+<p>date：2020.5.16 19：28</p>
+]]></content>
+      <categories>
+        <category>Essay</category>
+      </categories>
+      <tags>
+        <tag>Essay</tag>
+        <tag>写作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo_文章写作</title>
+    <url>/2020/05/15/Hexo_%E6%96%87%E7%AB%A0%E5%86%99%E4%BD%9C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><blockquote>
+<p>真的是纯手打的。。亲手码一遍之后果然熟悉多了</p>
+</blockquote>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a><strong>属性</strong></h2><h3 id="软件："><a href="#软件：" class="headerlink" title="软件："></a><em>软件：</em></h3><p>vs code</p>
+<h3 id="插件：-extension"><a href="#插件：-extension" class="headerlink" title="插件：(extension)"></a><em>插件：(extension)</em></h3><p>1.markdown all in one</p>
+<p>2.markdown preview enhanced</p>
+<p>3.markdown+math</p>
+<p>4.chinese</p>
+<p>5.swig(.tpl)</p>
+<h3 id="语言："><a href="#语言：" class="headerlink" title="语言："></a><em>语言：</em></h3><p>markdown</p>
+<hr>
+<h2 id="markdown语法"><a href="#markdown语法" class="headerlink" title="markdown语法"></a><strong>markdown语法</strong></h2><h3 id="文字-↓↓↓"><a href="#文字-↓↓↓" class="headerlink" title="文字 ↓↓↓"></a><em>文字 ↓↓↓</em></h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 标题</span><br><span class="line"></span><br><span class="line">## 二级标题</span><br><span class="line"></span><br><span class="line">###### 六级标题</span><br><span class="line"></span><br><span class="line"> *斜体*</span><br><span class="line"></span><br><span class="line">**加粗**</span><br><span class="line"></span><br><span class="line">***斜体加粗***</span><br><span class="line"></span><br><span class="line">~~删除线~~</span><br><span class="line"></span><br><span class="line">&gt;引用</span><br><span class="line">&gt;&gt;引用</span><br><span class="line"></span><br><span class="line">---或 * * *（3个以上) 分割线</span><br></pre></td></tr></table></figure>
+
+<h3 id="图片-↓↓↓"><a href="#图片-↓↓↓" class="headerlink" title="图片 ↓↓↓"></a><em>图片 ↓↓↓</em></h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">![图片alt](图片地址 &#39;&#39;图片title&#39;&#39;)</span><br><span class="line">图片alt就是显示在图片下面的文字，相当于对图片内容的解释。</span><br><span class="line">图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加</span><br><span class="line">示例：</span><br><span class="line">![blockchain](https:&#x2F;&#x2F;ss0.bdstatic.com&#x2F;70cFvHSh_Q1YnxGkpoWK1HF6hhy&#x2F;it&#x2F;</span><br><span class="line">u&#x3D;702257389,1274025419&amp;fm&#x3D;27&amp;gp&#x3D;0.jpg &quot;区块链&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.jianshu.com/p/ea1eb11db63f" target="_blank" rel="noopener">图床</a></p>
+<h3 id="超链接-↓↓↓"><a href="#超链接-↓↓↓" class="headerlink" title="超链接 ↓↓↓"></a><em>超链接 ↓↓↓</em></h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[超链接名](超链接地址 &quot;超链接title&quot;)title可加可不加</span><br><span class="line">示例：</span><br><span class="line">[简书](http:&#x2F;&#x2F;jianshu.com)</span><br><span class="line">[百度](http:&#x2F;&#x2F;baidu.com)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：Markdown本身语法不支持链接在新页面中打开，貌似简书做了处理，是可以的。别的平台可能就不行了，如果想要在新页面中打开的话可以用html语言的a标签代替。</p>
+</blockquote>
+<p>示例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;a href&#x3D;&quot;超链接地址&quot; target&#x3D;&quot;_blank&quot;&gt;超链接名&lt;&#x2F;a&gt;</span><br><span class="line">&gt;</span><br><span class="line">如：</span><br><span class="line">&lt;a href&#x3D;&quot;https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;1f5ac0cf6a8b&quot; target&#x3D;&quot;_blank&quot;&gt;简书&lt;&#x2F;a&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="列表-↓↓↓"><a href="#列表-↓↓↓" class="headerlink" title="列表 ↓↓↓"></a><em>列表 ↓↓↓</em></h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">无序列表:</span><br><span class="line">- 列表内容</span><br><span class="line">+ 列表内容</span><br><span class="line">* 列表内容</span><br><span class="line">注意：- + * 跟内容之间都要有一个空格</span><br><span class="line"></span><br><span class="line">有序列表：</span><br><span class="line">1. 列表内容</span><br><span class="line">2. 列表内容</span><br><span class="line">3. 列表内容</span><br><span class="line">注意：序号跟内容之间要有空格</span><br><span class="line"></span><br><span class="line">列表嵌套：</span><br><span class="line">上一级和下一级之间敲三个空格即可</span><br></pre></td></tr></table></figure>
+<h3 id="表格-↓↓↓"><a href="#表格-↓↓↓" class="headerlink" title="表格 ↓↓↓"></a><em>表格 ↓↓↓</em></h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">表头|表头|表头</span><br><span class="line">---|:--:|---:</span><br><span class="line">内容|内容|内容</span><br><span class="line">内容|内容|内容</span><br><span class="line"></span><br><span class="line">第二行分割表头和内容。</span><br><span class="line">- 有一个就行，为了对齐，多加了几个</span><br><span class="line">文字默认居左</span><br><span class="line">-两边加：表示文字居中</span><br><span class="line">-右边加：表示文字居右</span><br><span class="line">注：原生的语法两边都要用 | 包起来。此处省略</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line">姓名|技能|排行</span><br><span class="line">--|:--:|--:</span><br><span class="line">刘备|哭|大哥</span><br><span class="line">关羽|打|二哥</span><br><span class="line">张飞|骂|三弟</span><br></pre></td></tr></table></figure>
+<h3 id="代码-↓↓↓"><a href="#代码-↓↓↓" class="headerlink" title="代码 ↓↓↓"></a><em>代码 ↓↓↓</em></h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">单行代码：代码之间分别用一个反引号包起来</span><br><span class="line">如： &#96;代码内容&#96;</span><br><span class="line"></span><br><span class="line">代码块：代码之间分别用三个反引号包起来，且两边的反引号单独占一行</span><br><span class="line">如：</span><br><span class="line">(&#96;&#96;&#96;)</span><br><span class="line">  代码...</span><br><span class="line">  代码...</span><br><span class="line">  代码...</span><br><span class="line">(&#96;&#96;&#96;)</span><br></pre></td></tr></table></figure>
+<h3 id="流程图↓↓↓"><a href="#流程图↓↓↓" class="headerlink" title="流程图↓↓↓"></a><em>流程图↓↓↓</em></h3><p><a href="https://www.jianshu.com/p/c2d6c128346d" target="_blank" rel="noopener">不懂</a></p>
+<h3 id="空格和缩进↓↓↓"><a href="#空格和缩进↓↓↓" class="headerlink" title="空格和缩进↓↓↓"></a><em>空格和缩进↓↓↓</em></h3><p><a href="https://www.jianshu.com/p/31eade263e7a" target="_blank" rel="noopener">以后再更</a></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Blog</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo+Git博客搭建</title>
+    <url>/2020/05/15/Hexo+Git%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><blockquote>
+<p>有时间再慢慢更新</p>
+</blockquote>
+<ol>
+<li><p>软件</p>
+<ol>
+<li>Node.js</li>
+<li>Git</li>
+</ol>
+</li>
+<li><p>设置</p>
+<ol>
+<li>Github</li>
+<li>SSH</li>
+</ol>
+</li>
+<li><p>搭建</p>
+<ol>
+<li>Hexo</li>
+<li>theme-next</li>
+</ol>
+</li>
+<li><p>完成</p>
+<ol>
+<li>iframe-背景音乐</li>
+<li>aplayer、dplayer:失败</li>
+<li>点击显示字体</li>
+<li>background_pic</li>
+<li>lived2d:shizuku</li>
+<li>背景线条</li>
+<li>换源：淘宝<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">查看自己当前的镜像:npm get registry,</span><br><span class="line">然后切换为原来的镜像:npm config set registry https:&#x2F;&#x2F;registry.npmjs.org&#x2F;,</span><br></pre></td></tr></table></figure></li>
+<li>运行时间</li>
+<li>访问量统计：不蒜子，分uv、pv;localhost访问量异常是正常的</li>
+<li>取消powered by hexo</li>
+<li>离开标题恶搞</li>
+<li>注释next-config文件</li>
+<li>板块位置、大小、透明度：弄了一半</li>
+<li>搜索</li>
+<li>字数统计</li>
+<li>雪花特效</li>
+<li>显示当前浏览进度</li>
+<li>创建标签页</li>
+<li>设置文章默认格式1：tag、categories、date</li>
+</ol>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Blog</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo_防坑指南</title>
+    <url>/2020/05/15/Hexo_%E9%98%B2%E5%9D%91%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ol>
+<li>点击侧边栏标签时，显示Cannot GET /tags/%20/<blockquote>
+<p>问题原因和解决办法：<br>%20 是空格的意思，不小心在主题配置文件 || 之后加多了空格</p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>home: /&ensp;&ensp;|| home<br>改为：<br>home: /|| home</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Blog</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用Matlab偷懒学线代</title>
+    <url>/2020/05/16/%E7%94%A8Matlab%E5%81%B7%E6%87%92%E5%AD%A6%E7%BA%BF%E4%BB%A3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>占坑，以后补。<br>介绍det、inv、rref、rrefmovie</p>
+<p>det(A)就是求A的行列式，这里要求A为方阵</p>
+<p>inv（A）求A的逆矩阵</p>
+<p>A的伴随矩阵就是det(A)*inv(A)</p>
+<p>B=A’ ,” ‘ “是求矩阵转置的意思</p>
+<p>rank(A)求A的秩</p>
+<p>rref(A)把A化到行最简形</p>
+<p>rrefmovie(A)显示rref每一步操作</p>
+<p>但要加入下面的代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function rrefmovie(A,tol)</span><br><span class="line">%RREFMOVIE Movie of the computation of the reduced row echelon form.</span><br><span class="line">%   RREFMOVIE(A) produces the reduced row echelon form of A.</span><br><span class="line">%   RREFMOVIE, by itself, supplies its own 8-by-6 matrix with rank 4.</span><br><span class="line">%   RREFMOVIE(A,tol) uses the given tolerance in the rank tests.</span><br><span class="line"></span><br><span class="line">%   Copyright 1984-2004 The MathWorks, Inc.</span><br><span class="line">%   $Revision: 5.12.4.3 $  $Date: 2004&#x2F;04&#x2F;10 23:25:44 $</span><br><span class="line"></span><br><span class="line">% Sample matrix if none was provided.</span><br><span class="line"></span><br><span class="line">commandwindow</span><br><span class="line"></span><br><span class="line">Old_Format&#x3D;get(0,&#39;Format&#39;);</span><br><span class="line">if nargin &lt; 1</span><br><span class="line"></span><br><span class="line">    A &#x3D; [ 9     4     1     6    12     7</span><br><span class="line">          4     0     4    15     1    14</span><br><span class="line">          7     0     7     8    10     9</span><br><span class="line">         16     0    16     3    13     2</span><br><span class="line">          0     2    -4     0     0     0</span><br><span class="line">          0     6   -12     0     0     0</span><br><span class="line">          9     0     9     6    12     7</span><br><span class="line">          5     0     5    10     8    11];</span><br><span class="line">end</span><br><span class="line">format rat</span><br><span class="line">more off</span><br><span class="line">clc</span><br><span class="line">home</span><br><span class="line">disp(&#39;  Original matrix&#39;)</span><br><span class="line">A</span><br><span class="line">disp(&#39;Press any key to continue. . .&#39;), pause</span><br><span class="line">[m,n] &#x3D; size(A);</span><br><span class="line"></span><br><span class="line">% Compute the default tolerance if none was provided.</span><br><span class="line">if (nargin &lt; 2), tol &#x3D; max([m,n])*eps*norm(A,&#39;inf&#39;); end</span><br><span class="line"></span><br><span class="line">% Loop over the entire matrix.</span><br><span class="line">i &#x3D; 1;</span><br><span class="line">j &#x3D; 1;</span><br><span class="line">k &#x3D; 0;</span><br><span class="line">while (i &lt;&#x3D; m) &amp;&amp; (j &lt;&#x3D; n)</span><br><span class="line">   % Find value and index of largest element in the remainder of column j.</span><br><span class="line">   [p,k] &#x3D; max(abs(A(i:m,j))); k &#x3D; k+i-1;</span><br><span class="line">   if (p &lt;&#x3D; tol)</span><br><span class="line">      % The column is negligible, zero it out.</span><br><span class="line">      home</span><br><span class="line">      disp([&#39;  column &#39; int2str(j) &#39; is negligible&#39;])</span><br><span class="line">      A(i:m,j) &#x3D; zeros(m-i+1,1)</span><br><span class="line">      disp(&#39;Press any key to continue. . .&#39;), pause</span><br><span class="line">      j &#x3D; j + 1;</span><br><span class="line">   else</span><br><span class="line">      if i ~&#x3D; k</span><br><span class="line">         % Swap i-th and k-th rows.</span><br><span class="line">         home</span><br><span class="line">         disp([&#39;  swap rows &#39; int2str(i) &#39; and &#39; int2str(k) blanks(10)])</span><br><span class="line">         A([i k],:) &#x3D; A([k i],:)</span><br><span class="line">         disp(&#39;Press any key to continue. . .&#39;), pause</span><br><span class="line">      end</span><br><span class="line">      % Divide the pivot row by the pivot element.</span><br><span class="line">      home</span><br><span class="line">      disp([&#39;  pivot &#x3D; A(&#39; int2str(i) &#39;,&#39; int2str(j) &#39;)&#39; blanks(10)])</span><br><span class="line">      A(i,j:n) &#x3D; A(i,j:n)&#x2F;A(i,j)</span><br><span class="line">      disp(&#39;Press any key to continue. . .&#39;), pause</span><br><span class="line">      home</span><br><span class="line">      % Subtract multiples of the pivot row from all the other rows.</span><br><span class="line">      disp([&#39;  eliminate in column &#39; int2str(j) blanks(10)])</span><br><span class="line">      A</span><br><span class="line">      disp(&#39;Press any key to continue. . .&#39;), pause</span><br><span class="line">      for k &#x3D; 1:m</span><br><span class="line">         if k ~&#x3D; i</span><br><span class="line">            home</span><br><span class="line">            disp(&#39; &#39;)</span><br><span class="line">            A(k,j:n) &#x3D; A(k,j:n) - A(k,j)*A(i,j:n)</span><br><span class="line">         end</span><br><span class="line">      end</span><br><span class="line">      disp(&#39;Press any key to continue. . .&#39;), pause</span><br><span class="line">      i &#x3D; i + 1;</span><br><span class="line">      j &#x3D; j + 1;</span><br><span class="line">   end</span><br><span class="line">end</span><br><span class="line">%  Restore Format</span><br><span class="line">set(0,&#39;Format&#39;,Old_Format)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>matlab</category>
+      </categories>
+      <tags>
+        <tag>matlab</tag>
+        <tag>linear algebra</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>URP_5.17总结</title>
+    <url>/2020/05/17/URP_5.17%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="Yalmip"><a href="#Yalmip" class="headerlink" title="Yalmip"></a>Yalmip</h1><ul>
+<li><p>介绍</p>
+<blockquote>
+<p>yalmip是由Lofberg开发的一种免费的优化求解工具，其最大特色在于集成许多外部的最优化求解器，形成一种统一的建模求解语言，提供了Matlab的调用API，减少学习者学习成本。</p>
+</blockquote>
+</li>
+<li><p>下载 Yalmip 工具箱：</p>
+<blockquote>
+<p><a href="https://yalmip.github.io/" target="_blank" rel="noopener">https://yalmip.github.io/</a><br>放到toolbox文件夹下<br>设置路径。选择“添加并包含子文件夹”，将 yalmip 的路径添加进去</p>
+</blockquote>
+</li>
+<li><p>测试是否成功：</p>
+<blockquote>
+<p>doc yalmip</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>yalmiptest</p>
+</blockquote>
+<blockquote>
+<p>which sdpva</p>
+</blockquote>
+<p><a href="https://yalmip.github.io/tutorials/" target="_blank" rel="noopener">教程</a></p>
+<ul>
+<li>命令<blockquote>
+<p>sdpvar:实数变量</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>intvar：整数变量</p>
+</blockquote>
+<blockquote>
+<p>binvar：0-1变量</p>
+</blockquote>
+<blockquote>
+<p>check：可以检查约束条件是否被满足（检查约束条件的余值）</p>
+</blockquote>
+<blockquote>
+<p>value：可以查看变量或表达式的值</p>
+</blockquote>
+<blockquote>
+<p>assign: 可以给变量赋值，这个命令调试时很重要</p>
+</blockquote>
+<blockquote>
+<p>options=sdpsettings(‘solver’,’cplex’); 设置求解方法为调用 CPLEX</p>
+</blockquote>
+<blockquote>
+<p>optimize(constraints,f,options);  Yalmip求解的命令。</p>
+</blockquote>
+<h1 id="SEIR"><a href="#SEIR" class="headerlink" title="SEIR"></a>SEIR</h1><blockquote>
+<p>save(‘data.mat’,’a’,’b’,’c’) %假如有三个变量’a’, ‘b’, ‘c’，要将它们保存在’data’数据文件中</p>
+</blockquote>
+<blockquote>
+<p>v = load(‘data.mat’,’a’) %将’data’数据文件中’a’变量读出存到’v’中<br>画图</p>
+</blockquote>
+<blockquote>
+<p>subplot(m,n,p)<br>m,n说明分成几行几列，p说明是第几个（左→右，上↓下）</p>
+</blockquote>
+<blockquote>
+<p>hold on</p>
+</blockquote>
+<h1 id="ADMM：看不懂"><a href="#ADMM：看不懂" class="headerlink" title="ADMM：看不懂"></a>ADMM：看不懂</h1>]]></content>
+      <categories>
+        <category>URP</category>
+      </categories>
+      <tags>
+        <tag>matlab</tag>
+        <tag>URP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>购物篮分析-python实现</title>
+    <url>/2020/05/17/%E8%B4%AD%E7%89%A9%E7%AF%AE%E5%88%86%E6%9E%90-python%E5%AE%9E%E7%8E%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>实际上，我做的是超级简化版.</p>
+<h2 id="题目："><a href="#题目：" class="headerlink" title="题目："></a><strong>题目：</strong></h2><p>下面每一行是一个购物小票，直到遇到五个零00000，输入序列终止，每个字母表示一种商品（字母区分大小写，即a 和A代表不同的产品），请分析哪两个种产品的销售相关性最高：</p>
+<p>样例输入：</p>
+<p>AABZXY</p>
+<p>BMNY</p>
+<p>CD</p>
+<p>CBYPQ</p>
+<p>BWVCY</p>
+<p>00000</p>
+<p>输出(字幕顺序按ASC码升序排列)：</p>
+<p>BY     </p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a><strong>代码：</strong></h2><pre><code>from __future__ import print_function
+def main():
+    dic={}
+    list1=[]
+    a=input()
+    while a!=&quot;00000&quot;:
+        list1.append(a)
+        a = input()
+
+    for i in range(0,len(list1)):
+        str=[]
+        for j in range(0,len(list1[i])):
+            for k in range(j+1,len(list1[i])):
+                str.append(list1[i][j]+list1[i][k])
+        max = 0
+        for i in range(0, len(str)):
+            dic[str[i]] = dic.get(str[i], 0) + 1
+            if dic.get(str[i], 0) &gt; max:
+                max = dic.get(str[i], 0)
+                answer = str[i]
+#按ASCII码输出
+    an=[]
+    for i in range(0,len(answer)):
+        an.append(answer[i])
+    an.sort()
+    for i in range(0,len(an)):
+        print(an[i],end=&quot;&quot;)
+if __name__ == &apos;__main__&apos;:
+    main()
+</code></pre><p>ps.我忘记加去重了，所以这个代码还有点问题。</p>
+<p>以后再改。</p>
+<h3 id="小故事：啤酒与尿布"><a href="#小故事：啤酒与尿布" class="headerlink" title="小故事：啤酒与尿布"></a><em>小故事：啤酒与尿布</em></h3><ul>
+<li><strong>故事内容</strong></li>
+</ul>
+<p>这个故事发生于20世纪90年代的美国超市中，超市管理人员分析销售数据时发现了一个令人难于理解的现象：在某些特定的情况下，“啤酒”与“尿布”两件看上去毫无关系的商品会经常出现在同一个购物篮中，这种独特的销售现象引起了管理人员的注意，经过后续调查发现，这种现象出现在年轻的父亲身上。</p>
+<ul>
+<li><strong>故事起因</strong></li>
+</ul>
+<p>在美国有婴儿的家庭中，一般是母亲在家中照看婴儿，年轻的父亲前去超市购买尿布。父亲在购买尿布的同时，往往会顺便为自己购买啤酒，这样就会出现啤酒与尿布这两件看上去不相干的商品经常会出现在同一个购物篮的现象。</p>
+<p>如果这个年轻的父亲在卖场只能买到两件商品之一，则他很有可能会放弃购物而到另一家商店，直到可以一次同时买到啤酒与尿布为止。</p>
+<p>超市发现了这一独特的现象，开始在卖场尝试将啤酒与尿布摆放在相同的区域，让年轻的父亲可以同时找到这两件商品，并很快地完成购物。</p>
+<ul>
+<li><strong>故事小结</strong></li>
+</ul>
+<p>这个故事是因为有数据分析的结果支持才会获得成功并得到广泛传播，通过分析购物篮中的商品集合数据，找出商品之间的关联关系，发现客户的购买行为，从而获得更多的商品销售收入。</p>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>关联分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>word宏命令</title>
+    <url>/2020/05/16/word%E5%AE%8F%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>占坑，以后补。<br>介绍VBA（Visual Basic for Applications）<br>宏录制。</p>
+]]></content>
+      <categories>
+        <category>macro</category>
+      </categories>
+      <tags>
+        <tag>word</tag>
+        <tag>macro</tag>
+      </tags>
+  </entry>
+</search>
