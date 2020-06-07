@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>ducknew&#39;s blog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://cheungducknew.github.io/"/>
+  <updated>2020-05-19T13:22:00.454Z</updated>
+  <id>http://cheungducknew.github.io/</id>
+  
+  <author>
+    <name>ducknew</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo-Theme-Sakura</title>
+    <link href="http://cheungducknew.github.io/2020/05/18/Hexo-Theme-Sakura/"/>
+    <id>http://cheungducknew.github.io/2020/05/18/Hexo-Theme-Sakura/</id>
+    <published>2020-05-18T14:08:01.000Z</published>
+    <updated>2020-05-19T13:22:00.454Z</updated>
+    
+    <summary type="html">
+    
+      hexo-sakura主题使用教程
+    
+    </summary>
+    
+      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="web" scheme="http://cheungducknew.github.io/tags/web/"/>
+    
+      <category term="悦读" scheme="http://cheungducknew.github.io/tags/%E6%82%A6%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo+Git博客搭建</title>
+    <link href="http://cheungducknew.github.io/2020/05/18/Hexo+Git%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    <id>http://cheungducknew.github.io/2020/05/18/Hexo+Git博客搭建/</id>
+    <published>2020-05-18T06:37:09.685Z</published>
+    <updated>2020-05-20T02:36:48.349Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;有时间再慢慢更新&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;软件&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Node.js&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Github&lt;/
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Blog" scheme="http://cheungducknew.github.io/tags/Blog/"/>
+    
+      <category term="Hexo" scheme="http://cheungducknew.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>word宏命令</title>
+    <link href="http://cheungducknew.github.io/2020/05/18/word%E5%AE%8F%E5%91%BD%E4%BB%A4/"/>
+    <id>http://cheungducknew.github.io/2020/05/18/word宏命令/</id>
+    <published>2020-05-18T06:37:09.685Z</published>
+    <updated>2020-05-20T02:38:27.042Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;占坑，以后补。&lt;br&gt;介绍VBA（Visual Basic for
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="word" scheme="http://cheungducknew.github.io/tags/word/"/>
+    
+      <category term="macro" scheme="http://cheungducknew.github.io/tags/macro/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>URP_5.17总结</title>
+    <link href="http://cheungducknew.github.io/2020/05/18/URP_5.17%E6%80%BB%E7%BB%93/"/>
+    <id>http://cheungducknew.github.io/2020/05/18/URP_5.17总结/</id>
+    <published>2020-05-18T06:37:09.685Z</published>
+    <updated>2020-05-20T02:37:50.938Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Yalmip&quot;&gt;&lt;a href=&quot;#Yalmip&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="matlab" scheme="http://cheungducknew.github.io/tags/matlab/"/>
+    
+      <category term="URP" scheme="http://cheungducknew.github.io/tags/URP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用Matlab偷懒学线代</title>
+    <link href="http://cheungducknew.github.io/2020/05/18/%E7%94%A8Matlab%E5%81%B7%E6%87%92%E5%AD%A6%E7%BA%BF%E4%BB%A3/"/>
+    <id>http://cheungducknew.github.io/2020/05/18/用Matlab偷懒学线代/</id>
+    <published>2020-05-18T06:37:09.685Z</published>
+    <updated>2020-05-20T02:39:59.924Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;占坑，以后补。&lt;/p&gt;
+&lt;p&gt;det(A)就是求A的行列式，这里要求A为方阵&lt;/p&gt;
+&lt;p&gt;inv（A）求A的逆矩阵&lt;/p&gt;
+&lt;p&gt;A的伴随矩阵就是det(A)*inv(A)&lt;/p&gt;
+&lt;p&gt;B=A’ ,” ‘
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="matlab" scheme="http://cheungducknew.github.io/tags/matlab/"/>
+    
+      <category term="linear algebra" scheme="http://cheungducknew.github.io/tags/linear-algebra/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>购物篮分析-python实现</title>
+    <link href="http://cheungducknew.github.io/2020/05/18/%E8%B4%AD%E7%89%A9%E7%AF%AE%E5%88%86%E6%9E%90-python%E5%AE%9E%E7%8E%B0/"/>
+    <id>http://cheungducknew.github.io/2020/05/18/购物篮分析-python实现/</id>
+    <published>2020-05-18T06:37:09.685Z</published>
+    <updated>2020-05-20T02:39:05.561Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;实际上，我做的是超级简化版.&lt;/p&gt;
+&lt;h2 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="python" scheme="http://cheungducknew.github.io/tags/python/"/>
+    
+      <category term="关联分析" scheme="http://cheungducknew.github.io/tags/%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Book_list</title>
+    <link href="http://cheungducknew.github.io/2020/05/18/Book_list/"/>
+    <id>http://cheungducknew.github.io/2020/05/18/Book_list/</id>
+    <published>2020-05-18T06:37:09.669Z</published>
+    <updated>2020-05-19T13:24:45.766Z</updated>
+    
+    <summary type="html">
+    
+      hexo-sakura主题使用教程
+    
+    </summary>
+    
+      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="book" scheme="http://cheungducknew.github.io/tags/book/"/>
+    
+      <category term="list" scheme="http://cheungducknew.github.io/tags/list/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Essay_纸上和网上写作</title>
+    <link href="http://cheungducknew.github.io/2020/05/18/Essay_%E7%BA%B8%E4%B8%8A%E5%92%8C%E7%BD%91%E4%B8%8A%E5%86%99%E4%BD%9C/"/>
+    <id>http://cheungducknew.github.io/2020/05/18/Essay_纸上和网上写作/</id>
+    <published>2020-05-18T06:37:09.669Z</published>
+    <updated>2020-05-19T13:21:47.580Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;emmm…在高中的时候，我就不怎么喜欢在网上阅读和写作。&lt;/p&gt;
+&lt;p&gt;想了想，可能是因为在网上写的时候，错了可以改，有大段的文字可以复制，而且很多要写的东西又有字数要求。所以我就想着先动笔，虽然对总体架构还不清楚，但还是先写着，想到什么写什么，查到什么就复制什么，结果就是
+        
+      
+    
+    </summary>
+    
+      <category term="生活" scheme="http://cheungducknew.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="Essay" scheme="http://cheungducknew.github.io/tags/Essay/"/>
+    
+      <category term="写作" scheme="http://cheungducknew.github.io/tags/%E5%86%99%E4%BD%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo _文章管理</title>
+    <link href="http://cheungducknew.github.io/2020/05/18/Hexo%20_%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86/"/>
+    <id>http://cheungducknew.github.io/2020/05/18/Hexo _文章管理/</id>
+    <published>2020-05-18T06:37:09.669Z</published>
+    <updated>2020-05-19T13:26:53.037Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;npm-命令：&quot;&gt;&lt;a href=&quot;#npm-命令：&quot; class=&quot;headerlink&quot; title=&quot;npm 命令：&quot;&gt;&lt;/a&gt;npm 命令：&lt;/h1&gt;&lt;h1 id=&quot;hexo-命令：&quot;&gt;&lt;a href=&quot;#hexo-命令：&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Blog" scheme="http://cheungducknew.github.io/tags/Blog/"/>
+    
+      <category term="Hexo" scheme="http://cheungducknew.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo_文章写作</title>
+    <link href="http://cheungducknew.github.io/2020/05/18/Hexo_%E6%96%87%E7%AB%A0%E5%86%99%E4%BD%9C/"/>
+    <id>http://cheungducknew.github.io/2020/05/18/Hexo_文章写作/</id>
+    <published>2020-05-18T06:37:09.669Z</published>
+    <updated>2020-05-20T02:36:17.492Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;真的是纯手打的。。亲手码一遍之后果然熟悉多了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;属性&quot;&gt;&lt;a href=&quot;#属性&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Blog" scheme="http://cheungducknew.github.io/tags/Blog/"/>
+    
+      <category term="Hexo" scheme="http://cheungducknew.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo_认识文件</title>
+    <link href="http://cheungducknew.github.io/2020/05/18/Hexo_%E8%AE%A4%E8%AF%86%E6%96%87%E4%BB%B6/"/>
+    <id>http://cheungducknew.github.io/2020/05/18/Hexo_认识文件/</id>
+    <published>2020-05-18T06:37:09.669Z</published>
+    <updated>2020-05-20T02:35:57.824Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;node_modules: 依赖包&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;public：存放生成的页面，运行 hexo g 便会生成，而 hexo clean
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Blog" scheme="http://cheungducknew.github.io/tags/Blog/"/>
+    
+      <category term="Hexo" scheme="http://cheungducknew.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo_防坑指南</title>
+    <link href="http://cheungducknew.github.io/2020/05/18/Hexo_%E9%98%B2%E5%9D%91%E6%8C%87%E5%8D%97/"/>
+    <id>http://cheungducknew.github.io/2020/05/18/Hexo_防坑指南/</id>
+    <published>2020-05-18T06:37:09.669Z</published>
+    <updated>2020-05-19T13:28:35.918Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ol&gt;
+&lt;li&gt;点击侧边栏标签时，显示Cannot GET /tags/%20/&lt;blockquote&gt;
+&lt;p&gt;问题原因和解决办法：&lt;br&gt;%20 是空格的意思，不小心在主题配置文件 ||
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Blog" scheme="http://cheungducknew.github.io/tags/Blog/"/>
+    
+      <category term="Hexo" scheme="http://cheungducknew.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+</feed>
