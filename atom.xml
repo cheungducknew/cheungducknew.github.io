@@ -218,6 +218,34 @@
   </entry>
   
   <entry>
+    <title>Hexo _文章管理</title>
+    <link href="http://cheungducknew.github.io/2020/05/18/Hexo%20_%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86/"/>
+    <id>http://cheungducknew.github.io/2020/05/18/Hexo _文章管理/</id>
+    <published>2020-05-18T06:37:09.669Z</published>
+    <updated>2020-05-19T13:26:53.037Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;npm-命令：&quot;&gt;&lt;a href=&quot;#npm-命令：&quot; class=&quot;headerlink&quot; title=&quot;npm 命令：&quot;&gt;&lt;/a&gt;npm 命令：&lt;/h1&gt;&lt;h1 id=&quot;hexo-命令：&quot;&gt;&lt;a href=&quot;#hexo-命令：&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Blog" scheme="http://cheungducknew.github.io/tags/Blog/"/>
+    
+      <category term="Hexo" scheme="http://cheungducknew.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Essay_纸上和网上写作</title>
     <link href="http://cheungducknew.github.io/2020/05/18/Essay_%E7%BA%B8%E4%B8%8A%E5%92%8C%E7%BD%91%E4%B8%8A%E5%86%99%E4%BD%9C/"/>
     <id>http://cheungducknew.github.io/2020/05/18/Essay_纸上和网上写作/</id>
@@ -243,34 +271,6 @@
       <category term="Essay" scheme="http://cheungducknew.github.io/tags/Essay/"/>
     
       <category term="写作" scheme="http://cheungducknew.github.io/tags/%E5%86%99%E4%BD%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo _文章管理</title>
-    <link href="http://cheungducknew.github.io/2020/05/18/Hexo%20_%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86/"/>
-    <id>http://cheungducknew.github.io/2020/05/18/Hexo _文章管理/</id>
-    <published>2020-05-18T06:37:09.669Z</published>
-    <updated>2020-05-19T13:26:53.037Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;npm-命令：&quot;&gt;&lt;a href=&quot;#npm-命令：&quot; class=&quot;headerlink&quot; title=&quot;npm 命令：&quot;&gt;&lt;/a&gt;npm 命令：&lt;/h1&gt;&lt;h1 id=&quot;hexo-命令：&quot;&gt;&lt;a href=&quot;#hexo-命令：&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Blog" scheme="http://cheungducknew.github.io/tags/Blog/"/>
-    
-      <category term="Hexo" scheme="http://cheungducknew.github.io/tags/Hexo/"/>
     
   </entry>
   
@@ -306,6 +306,36 @@
   </entry>
   
   <entry>
+    <title>Hexo_防坑指南</title>
+    <link href="http://cheungducknew.github.io/2020/05/18/Hexo_%E9%98%B2%E5%9D%91%E6%8C%87%E5%8D%97/"/>
+    <id>http://cheungducknew.github.io/2020/05/18/Hexo_防坑指南/</id>
+    <published>2020-05-18T06:37:09.669Z</published>
+    <updated>2020-05-19T13:28:35.918Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ol&gt;
+&lt;li&gt;点击侧边栏标签时，显示Cannot GET /tags/%20/&lt;blockquote&gt;
+&lt;p&gt;问题原因和解决办法：&lt;br&gt;%20 是空格的意思，不小心在主题配置文件 ||
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Blog" scheme="http://cheungducknew.github.io/tags/Blog/"/>
+    
+      <category term="Hexo" scheme="http://cheungducknew.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hexo_认识文件</title>
     <link href="http://cheungducknew.github.io/2020/05/18/Hexo_%E8%AE%A4%E8%AF%86%E6%96%87%E4%BB%B6/"/>
     <id>http://cheungducknew.github.io/2020/05/18/Hexo_认识文件/</id>
@@ -322,36 +352,6 @@
 &lt;li&gt;&lt;p&gt;node_modules: 依赖包&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;public：存放生成的页面，运行 hexo g 便会生成，而 hexo clean
-        
-      
-    
-    </summary>
-    
-      <category term="技术" scheme="http://cheungducknew.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Blog" scheme="http://cheungducknew.github.io/tags/Blog/"/>
-    
-      <category term="Hexo" scheme="http://cheungducknew.github.io/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo_防坑指南</title>
-    <link href="http://cheungducknew.github.io/2020/05/18/Hexo_%E9%98%B2%E5%9D%91%E6%8C%87%E5%8D%97/"/>
-    <id>http://cheungducknew.github.io/2020/05/18/Hexo_防坑指南/</id>
-    <published>2020-05-18T06:37:09.669Z</published>
-    <updated>2020-05-19T13:28:35.918Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;ol&gt;
-&lt;li&gt;点击侧边栏标签时，显示Cannot GET /tags/%20/&lt;blockquote&gt;
-&lt;p&gt;问题原因和解决办法：&lt;br&gt;%20 是空格的意思，不小心在主题配置文件 ||
         
       
     
