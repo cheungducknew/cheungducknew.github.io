@@ -1,0 +1,1632 @@
+﻿<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-new.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-new.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="sortedcontainers是一个用pure-python实现的拓展库，其内有SortedList、SortedDict、SortedSet等等，可以直接在力扣中使用 本文摘抄、总结于官方文档：http:&#x2F;&#x2F;www.grantjenks.com&#x2F;docs&#x2F;sortedcontainers&#x2F; InstructionSorted Containers is an Apache2 licensed">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python拓展之SortedContainers">
+<meta property="og:url" content="http://ducknew.cf/posts/32f991c5/index.html">
+<meta property="og:site_name" content="ducknew &#39;s blog">
+<meta property="og:description" content="sortedcontainers是一个用pure-python实现的拓展库，其内有SortedList、SortedDict、SortedSet等等，可以直接在力扣中使用 本文摘抄、总结于官方文档：http:&#x2F;&#x2F;www.grantjenks.com&#x2F;docs&#x2F;sortedcontainers&#x2F; InstructionSorted Containers is an Apache2 licensed">
+<meta property="article:published_time" content="2021-10-11T01:44:12.877Z">
+<meta property="article:modified_time" content="2021-10-11T01:44:37.868Z">
+<meta property="article:author" content="cheungducknew">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://ducknew.cf/posts/32f991c5/"/>
+
+
+
+
+
+  <title>python拓展之SortedContainers | ducknew 's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ducknew 's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">cs大三在读</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fa fa-link"></i> <br />
+            
+            友链
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ducknew.cf/posts/32f991c5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cheungducknew">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/sword.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ducknew 's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python拓展之SortedContainers</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-11T09:44:12+08:00">
+                2021-10-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-10-11T09:44:37+08:00">
+                2021-10-11
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/%E6%8B%93%E5%B1%95/" itemprop="url" rel="index">
+                    <span itemprop="name">拓展</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/32f991c5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/32f991c5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>sortedcontainers是一个用pure-python实现的拓展库，其内有SortedList、SortedDict、SortedSet等等，可以直接在<strong>力扣</strong>中使用</p>
+<p>本文摘抄、总结于官方文档：<a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">http://www.grantjenks.com/docs/sortedcontainers/</a></p>
+<h1 id="Instruction"><a href="#Instruction" class="headerlink" title="Instruction"></a>Instruction</h1><p><a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">Sorted Containers</a> is an Apache2 licensed <a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">sorted collections library</a>, written in pure-Python, and fast as C-extensions.</p>
+<p>Python’s standard library is great until you need a sorted collections type. Many will attest that you can get really far without one, but the moment you <strong>really need</strong> a sorted list, sorted dict, or sorted set, you’re faced with a dozen different implementations, most using C-extensions without great documentation and benchmarking.</p>
+<p>In Python, we can do better. And we can do it in pure-Python!</p>
+<h1 id="Quickstart"><a href="#Quickstart" class="headerlink" title="Quickstart"></a>Quickstart</h1><p>Installing <a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">Sorted Containers</a> is simple with <a href="https://pypi.org/project/pip/" target="_blank" rel="noopener">pip</a>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install sortedcontainers</span><br></pre></td></tr></table></figure>
+
+<p>You can access documentation in the interpreter with Python’s built-in help function. The help works on modules, classes and methods in <a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">Sorted Containers</a>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import sortedcontainers</span><br><span class="line">&gt;&gt;&gt; help(sortedcontainers)</span><br><span class="line">&gt;&gt;&gt; from sortedcontainers import SortedDict</span><br><span class="line">&gt;&gt;&gt; help(SortedDict)</span><br><span class="line">&gt;&gt;&gt; help(SortedDict.popitem)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="SortedList"><a href="#SortedList" class="headerlink" title="SortedList"></a>SortedList</h1><p><code>class sortedcontainers.SortedList(iterable=None, key=None)</code></p>
+<ul>
+<li>Sorted list is a sorted mutable sequence.</li>
+<li>Sorted list values are maintained in sorted order.</li>
+<li>Sorted list values must be comparable. The total ordering of values must not change while they are stored in the sorted list.</li>
+</ul>
+<h2 id="iterable"><a href="#iterable" class="headerlink" title="iterable"></a>iterable</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sl &#x3D; SortedList([3, 1, 2, 5, 4])</span><br><span class="line">&gt;&gt;&gt; sl</span><br><span class="line">SortedList([1, 2, 3, 4, 5])</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="init-amp-key"><a href="#init-amp-key" class="headerlink" title="init &amp; key"></a>init &amp; key</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sl &#x3D; SortedList()</span><br><span class="line">&gt;&gt;&gt; isinstance(sl, SortedList)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; sl &#x3D; SortedList(key&#x3D;lambda x: -x)</span><br><span class="line">&gt;&gt;&gt; isinstance(sl, SortedList)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; isinstance(sl, SortedKeyList)</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="add-value"><a href="#add-value" class="headerlink" title="add(value)"></a>add(<em>value</em>)</h2><p>时间复杂度近似O(logn)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sl &#x3D; SortedList()</span><br><span class="line">&gt;&gt;&gt; sl.add(3)</span><br><span class="line">&gt;&gt;&gt; sl.add(1)</span><br><span class="line">&gt;&gt;&gt; sl.add(2)</span><br><span class="line">&gt;&gt;&gt; sl</span><br><span class="line">SortedList([1, 2, 3])</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="update-iterable"><a href="#update-iterable" class="headerlink" title="update(iterable)"></a>update(<em>iterable</em>)</h2><p>时间复杂度近似O(k*logn)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sl &#x3D; SortedList()</span><br><span class="line">&gt;&gt;&gt; sl.update([3, 1, 2])</span><br><span class="line">&gt;&gt;&gt; sl</span><br><span class="line">SortedList([1, 2, 3])</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="clear"><a href="#clear" class="headerlink" title="clear()"></a>clear()</h2><p>Remove all values from sorted list.</p>
+<p>时间复杂度O(n)</p>
+<h2 id="discard-value"><a href="#discard-value" class="headerlink" title="discard(value)"></a>discard(<em>value</em>)</h2><p>Remove value from sorted list if it is a member.</p>
+<p>If value is not a member, do nothing.</p>
+<p>时间复杂度近似O(logn)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sl &#x3D; SortedList([1, 2, 3, 4, 5])</span><br><span class="line">&gt;&gt;&gt; sl.discard(5)</span><br><span class="line">&gt;&gt;&gt; sl.discard(0)</span><br><span class="line">&gt;&gt;&gt; sl &#x3D;&#x3D; [1, 2, 3, 4]</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="remove-value"><a href="#remove-value" class="headerlink" title="remove(value)"></a>remove(<em>value</em>)</h2><p>Remove value from sorted list; <strong>value must be a member</strong>.</p>
+<p>If value is not a member, raise ValueError.</p>
+<p>时间复杂度近似O(logn)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sl &#x3D; SortedList([1, 2, 3, 4, 5])</span><br><span class="line">&gt;&gt;&gt; sl.remove(5)</span><br><span class="line">&gt;&gt;&gt; sl &#x3D;&#x3D; [1, 2, 3, 4]</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; sl.remove(0)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">ValueError: 0 not in list</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="pop-index-1"><a href="#pop-index-1" class="headerlink" title="pop(index=-1)"></a>pop(<em>index=-1</em>)</h2><p>Remove and return value at index in sorted list.</p>
+<p>Raise <code>IndexError</code> if the sorted list is empty or index is out of range.</p>
+<p>Negative indices are supported.</p>
+<p>时间复杂度近似O(logn)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sl &#x3D; SortedList(&#39;abcde&#39;)</span><br><span class="line">&gt;&gt;&gt; sl.pop()</span><br><span class="line">&#39;e&#39;</span><br><span class="line">&gt;&gt;&gt; sl.pop(2)</span><br><span class="line">&#39;c&#39;</span><br><span class="line">&gt;&gt;&gt; sl</span><br><span class="line">SortedList([&#39;a&#39;, &#39;b&#39;, &#39;d&#39;])</span><br></pre></td></tr></table></figure>
+
+<h2 id="bisect-left-value"><a href="#bisect-left-value" class="headerlink" title="bisect_left(value)"></a>bisect_left(<em>value</em>)</h2><p>Similar to the bisect module in the standard library.</p>
+<p>时间复杂度近似O(logn)</p>
+<p>同理bisect_right(<em>value</em>)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sl &#x3D; SortedList([10, 11, 12, 13, 14])</span><br><span class="line">&gt;&gt;&gt; sl.bisect_left(12)</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<h2 id="count-value"><a href="#count-value" class="headerlink" title="count(value)"></a>count(<em>value</em>)</h2><p>时间复杂度近似O(logn)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sl &#x3D; SortedList([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])</span><br><span class="line">&gt;&gt;&gt; sl.count(3)</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<h2 id="index-value-start-None-stop-None"><a href="#index-value-start-None-stop-None" class="headerlink" title="index(value, start=None, stop=None)"></a>index(<em>value</em>, <em>start=None</em>, <em>stop=None</em>)</h2><p>Return first index of value in sorted list.</p>
+<p>Raise ValueError if value is not present.</p>
+<p>时间复杂度近似O(logn)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sl &#x3D; SortedList(&#39;abcde&#39;)</span><br><span class="line">&gt;&gt;&gt; sl.index(&#39;d&#39;)</span><br><span class="line">3</span><br><span class="line">&gt;&gt;&gt; sl.index(&#39;z&#39;)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">ValueError: &#39;z&#39; is not in list</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="SortedDict"><a href="#SortedDict" class="headerlink" title="SortedDict"></a>SortedDict</h1><p><code>class sortedcontainers.SortedDict(*args, **kwargs)</code></p>
+<ul>
+<li>Sorted dict is a sorted mutable mapping.</li>
+<li>Sorted dict keys are maintained in sorted order. The design of sorted dict is simple: sorted dict inherits from dict to store items and maintains a sorted list of keys.</li>
+<li>Sorted dict keys must be hashable and comparable. The hash and total ordering of keys must not change while they are stored in the sorted dict.</li>
+</ul>
+<h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><p>Sorted dict keys must be hashable, per the requirement for Python’s dictionaries. Keys (or the result of the key-function) must also be comparable, per the requirement for sorted lists.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; d &#x3D; &#123;&#39;alpha&#39;: 1, &#39;beta&#39;: 2&#125;</span><br><span class="line">&gt;&gt;&gt; SortedDict([(&#39;alpha&#39;, 1), (&#39;beta&#39;, 2)]) &#x3D;&#x3D; d</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; SortedDict(&#123;&#39;alpha&#39;: 1, &#39;beta&#39;: 2&#125;) &#x3D;&#x3D; d</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; SortedDict(alpha&#x3D;1, beta&#x3D;2) &#x3D;&#x3D; d</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="setdefault-key-default-None"><a href="#setdefault-key-default-None" class="headerlink" title="setdefault(key, default=None)"></a>setdefault(key, default=None)</h2><p>时间复杂度近似O(logn)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sd &#x3D; SortedDict()</span><br><span class="line">&gt;&gt;&gt; sd.setdefault(&#39;a&#39;, 1)</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; sd.setdefault(&#39;a&#39;, 10)</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; sd</span><br><span class="line">SortedDict(&#123;&#39;a&#39;: 1&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="clear-1"><a href="#clear-1" class="headerlink" title="clear()"></a>clear()</h2><p>Remove all values from sorted dict.</p>
+<p>时间复杂度O(n)</p>
+<h2 id="pop-key-default"><a href="#pop-key-default" class="headerlink" title="pop(key, default=)"></a>pop(<em>key</em>, default=<not-given>)</h2><p>Remove and return value for item identified by key.</p>
+<p>If the key is not found then return default if given. If default is not given then raise <code>KeyError</code>.</p>
+<p>时间复杂度近似O(logn)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sd &#x3D; SortedDict(&#123;&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3&#125;)</span><br><span class="line">&gt;&gt;&gt; sd.pop(&#39;c&#39;)</span><br><span class="line">3</span><br><span class="line">&gt;&gt;&gt; sd.pop(&#39;z&#39;, 26)</span><br><span class="line">26</span><br><span class="line">&gt;&gt;&gt; sd.pop(&#39;y&#39;)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">KeyError: &#39;y&#39;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="popitem-index-1"><a href="#popitem-index-1" class="headerlink" title="popitem(index=-1)"></a>popitem(<em>index=-1</em>)</h2><p>Remove and return <code>(key, value)</code> pair at index from sorted dict.</p>
+<p>Optional argument index defaults to -1, the last item in the sorted dict. Specify <code>index=0</code> for the first item in the sorted dict.</p>
+<p>If the sorted dict is empty, raises <code>KeyError</code>.</p>
+<p>If the index is out of range, raises <code>IndexError</code>.</p>
+<p>时间复杂度近似O(logn)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sd &#x3D; SortedDict(&#123;&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3&#125;)</span><br><span class="line">&gt;&gt;&gt; sd.popitem()</span><br><span class="line">(&#39;c&#39;, 3)</span><br><span class="line">&gt;&gt;&gt; sd.popitem(0)</span><br><span class="line">(&#39;a&#39;, 1)</span><br><span class="line">&gt;&gt;&gt; sd.popitem(100)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">IndexError: list index out of range</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="peekitem-index-1"><a href="#peekitem-index-1" class="headerlink" title="peekitem(index=-1)"></a>peekitem(<em>index=-1</em>)</h2><p>Return <code>(key, value)</code> pair at index in sorted dict.</p>
+<p>Optional argument index defaults to -1, the last item in the sorted dict. Specify <code>index=0</code> for the first item in the sorted dict.</p>
+<p>Unlike [<code>SortedDict.popitem()</code>] the sorted dict is not modified.</p>
+<p>If the index is out of range, raises <code>IndexError</code>.</p>
+<p>时间复杂度近似O(logn)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sd &#x3D; SortedDict(&#123;&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3&#125;)</span><br><span class="line">&gt;&gt;&gt; sd.peekitem()</span><br><span class="line">(&#39;c&#39;, 3)</span><br><span class="line">&gt;&gt;&gt; sd.peekitem(0)</span><br><span class="line">(&#39;a&#39;, 1)</span><br><span class="line">&gt;&gt;&gt; sd.peekitem(100)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">IndexError: list index out of range</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="SortedSet"><a href="#SortedSet" class="headerlink" title="SortedSet"></a>SortedSet</h1><p><code>class sortedcontainers.SortedSet(iterable=None, key=None)</code></p>
+<ul>
+<li>Sorted set is a sorted mutable set.</li>
+<li>Sorted set values are maintained in sorted order. The design of sorted set is simple: sorted set uses a set for set-operations and maintains a sorted list of values.</li>
+<li>Sorted set values must be hashable and comparable. The hash and total ordering of values must not change while they are stored in the sorted set.</li>
+</ul>
+<h2 id="init-1"><a href="#init-1" class="headerlink" title="init"></a>init</h2><p><code>__init__(iterable=None, key=None)</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ss &#x3D; SortedSet([3, 1, 2, 5, 4])</span><br><span class="line">&gt;&gt;&gt; ss</span><br><span class="line">SortedSet([1, 2, 3, 4, 5])</span><br><span class="line">&gt;&gt;&gt; from operator import neg</span><br><span class="line">&gt;&gt;&gt; ss &#x3D; SortedSet([3, 1, 2, 5, 4], neg)</span><br><span class="line">&gt;&gt;&gt; ss</span><br><span class="line">SortedSet([5, 4, 3, 2, 1], key&#x3D;&lt;built-in function neg&gt;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="add-value-1"><a href="#add-value-1" class="headerlink" title="add(value)"></a>add(<em>value</em>)</h2><p>Add value to sorted set.</p>
+<p>时间复杂度近似O(logn)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ss &#x3D; SortedSet()</span><br><span class="line">&gt;&gt;&gt; ss.add(3)</span><br><span class="line">&gt;&gt;&gt; ss.add(1)</span><br><span class="line">&gt;&gt;&gt; ss.add(2)</span><br><span class="line">&gt;&gt;&gt; ss</span><br><span class="line">SortedSet([1, 2, 3])</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="discard-value-1"><a href="#discard-value-1" class="headerlink" title="discard(value)"></a>discard(<em>value</em>)</h2><p>Remove value from sorted set if it is a member.</p>
+<p>If value is not a member, do nothing.</p>
+<p>时间复杂度近似O(logn)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ss &#x3D; SortedSet([1, 2, 3, 4, 5])</span><br><span class="line">&gt;&gt;&gt; ss.discard(5)</span><br><span class="line">&gt;&gt;&gt; ss.discard(0)</span><br><span class="line">&gt;&gt;&gt; ss &#x3D;&#x3D; set([1, 2, 3, 4])</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="remove-value-1"><a href="#remove-value-1" class="headerlink" title="remove(value)"></a>remove(<em>value</em>)</h2><p>Remove value from sorted set; <strong>value must be a member</strong>.</p>
+<p>If value is not a member, raise <code>KeyError</code>.</p>
+<p>时间复杂度近似O(logn)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ss &#x3D; SortedSet([1, 2, 3, 4, 5])</span><br><span class="line">&gt;&gt;&gt; ss.remove(5)</span><br><span class="line">&gt;&gt;&gt; ss &#x3D;&#x3D; set([1, 2, 3, 4])</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; ss.remove(0)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">KeyError: 0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="clear-2"><a href="#clear-2" class="headerlink" title="clear()"></a>clear()</h2><p>Remove all values from sorted set.</p>
+<p>时间复杂度O(n)</p>
+<h2 id="pop-index-1-1"><a href="#pop-index-1-1" class="headerlink" title="pop(index=-1)"></a>pop(<em>index=-1</em>)</h2><p>Remove and return value at index in sorted set.</p>
+<p>Raise <code>IndexError</code> if the sorted set is empty or index is out of range.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ss &#x3D; SortedSet(&#39;abcde&#39;)</span><br><span class="line">&gt;&gt;&gt; ss.pop()</span><br><span class="line">&#39;e&#39;</span><br><span class="line">&gt;&gt;&gt; ss.pop(2)</span><br><span class="line">&#39;c&#39;</span><br><span class="line">&gt;&gt;&gt; ss</span><br><span class="line">SortedSet([&#39;a&#39;, &#39;b&#39;, &#39;d&#39;])</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="count-value-1"><a href="#count-value-1" class="headerlink" title="count(value)"></a>count(<em>value</em>)</h2><p>Return number of occurrences of value in the sorted set.</p>
+<p>时间复杂度O(1)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ss &#x3D; SortedSet([1, 2, 3, 4, 5])</span><br><span class="line">&gt;&gt;&gt; ss.count(3)</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="difference-iterables"><a href="#difference-iterables" class="headerlink" title="difference(*iterables)"></a>difference(*iterables)</h2><p>Return the difference of two or more sets as a new sorted set.</p>
+<p>The difference method also corresponds to operator <code>-</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ss &#x3D; SortedSet([1, 2, 3, 4, 5])</span><br><span class="line">&gt;&gt;&gt; ss.difference([4, 5, 6, 7])</span><br><span class="line">SortedSet([1, 2, 3])</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="difference-update-iterables"><a href="#difference-update-iterables" class="headerlink" title="difference_update(*iterables)"></a>difference_update(*iterables)</h2><p>Remove all values of iterables from this sorted set.</p>
+<p>The difference_update method also corresponds to operator <code>-=</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ss &#x3D; SortedSet([1, 2, 3, 4, 5])</span><br><span class="line">&gt;&gt;&gt; _ &#x3D; ss.difference_update([4, 5, 6, 7])</span><br><span class="line">&gt;&gt;&gt; ss</span><br><span class="line">SortedSet([1, 2, 3])</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="intersection-iterables"><a href="#intersection-iterables" class="headerlink" title="intersection(*iterables)"></a>intersection(*iterables)</h2><p>Return the intersection of two or more sets as a new sorted set.</p>
+<p>The intersection method also corresponds to operator <code>&amp;</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ss &#x3D; SortedSet([1, 2, 3, 4, 5])</span><br><span class="line">&gt;&gt;&gt; ss.intersection([4, 5, 6, 7])</span><br><span class="line">SortedSet([4, 5])</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="intersection-update-iterables"><a href="#intersection-update-iterables" class="headerlink" title="intersection_update(*iterables)"></a>intersection_update(*iterables)</h2><p>The intersection_update method also corresponds to operator <code>&amp;=</code>.</p>
+<h2 id="symmetric-difference-other"><a href="#symmetric-difference-other" class="headerlink" title="symmetric_difference(other)"></a>symmetric_difference(other)</h2><p>Return the symmetric difference with other as a new sorted set.</p>
+<p>The symmetric_difference method also corresponds to operator <code>^</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ss &#x3D; SortedSet([1, 2, 3, 4, 5])</span><br><span class="line">&gt;&gt;&gt; ss.symmetric_difference([4, 5, 6, 7])</span><br><span class="line">SortedSet([1, 2, 3, 6, 7])</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="symmetric-difference-update-other"><a href="#symmetric-difference-update-other" class="headerlink" title="symmetric_difference_update(other)"></a>symmetric_difference_update(other)</h2><p>The symmetric_difference_update method also corresponds to operator <code>^=</code>.</p>
+<h2 id="union-iterables"><a href="#union-iterables" class="headerlink" title="union(*iterables)"></a>union(*iterables)</h2><p>Return new sorted set with values from itself and all iterables.</p>
+<p>The union method also corresponds to operator <code>|</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ss &#x3D; SortedSet([1, 2, 3, 4, 5])</span><br><span class="line">&gt;&gt;&gt; ss.union([4, 5, 6, 7])</span><br><span class="line">SortedSet([1, 2, 3, 4, 5, 6, 7])</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="update-iterables"><a href="#update-iterables" class="headerlink" title="update(*iterables)"></a>update(*iterables)</h2><p>Update the sorted set adding values from all iterables.</p>
+<p>The update method also corresponds to operator <code>|=</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ss &#x3D; SortedSet([1, 2, 3, 4, 5])</span><br><span class="line">&gt;&gt;&gt; _ &#x3D; ss.update([4, 5, 6, 7])</span><br><span class="line">&gt;&gt;&gt; ss</span><br><span class="line">SortedSet([1, 2, 3, 4, 5, 6, 7])</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>不要打赏，只求关注呀QAQ</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/background_pic.jpg" alt="cheungducknew 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/background_pic.jpg" alt="cheungducknew 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    cheungducknew
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://ducknew.cf/posts/32f991c5/" title="python拓展之SortedContainers">http://ducknew.cf/posts/32f991c5/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/98d9d83a/" rel="next" title="力扣第 262 场周赛">
+                <i class="fa fa-chevron-left"></i> 力扣第 262 场周赛
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/334a03b2/" rel="prev" title="利用百度智能云处理图像">
+                利用百度智能云处理图像 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/sword.png"
+                alt="cheungducknew" />
+            
+              <p class="site-author-name" itemprop="name">cheungducknew</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <!--a href="/archives/%7C%7C%20archive"-->
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cheungducknew" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_45825073" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-copyright"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Instruction"><span class="nav-number">1.</span> <span class="nav-text">Instruction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Quickstart"><span class="nav-number">2.</span> <span class="nav-text">Quickstart</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SortedList"><span class="nav-number">3.</span> <span class="nav-text">SortedList</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#iterable"><span class="nav-number">3.1.</span> <span class="nav-text">iterable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#init-amp-key"><span class="nav-number">3.2.</span> <span class="nav-text">init &amp; key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#add-value"><span class="nav-number">3.3.</span> <span class="nav-text">add(value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#update-iterable"><span class="nav-number">3.4.</span> <span class="nav-text">update(iterable)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clear"><span class="nav-number">3.5.</span> <span class="nav-text">clear()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#discard-value"><span class="nav-number">3.6.</span> <span class="nav-text">discard(value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#remove-value"><span class="nav-number">3.7.</span> <span class="nav-text">remove(value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pop-index-1"><span class="nav-number">3.8.</span> <span class="nav-text">pop(index&#x3D;-1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bisect-left-value"><span class="nav-number">3.9.</span> <span class="nav-text">bisect_left(value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#count-value"><span class="nav-number">3.10.</span> <span class="nav-text">count(value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#index-value-start-None-stop-None"><span class="nav-number">3.11.</span> <span class="nav-text">index(value, start&#x3D;None, stop&#x3D;None)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SortedDict"><span class="nav-number">4.</span> <span class="nav-text">SortedDict</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#init"><span class="nav-number">4.1.</span> <span class="nav-text">init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setdefault-key-default-None"><span class="nav-number">4.2.</span> <span class="nav-text">setdefault(key, default&#x3D;None)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clear-1"><span class="nav-number">4.3.</span> <span class="nav-text">clear()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pop-key-default"><span class="nav-number">4.4.</span> <span class="nav-text">pop(key, default&#x3D;)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#popitem-index-1"><span class="nav-number">4.5.</span> <span class="nav-text">popitem(index&#x3D;-1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#peekitem-index-1"><span class="nav-number">4.6.</span> <span class="nav-text">peekitem(index&#x3D;-1)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SortedSet"><span class="nav-number">5.</span> <span class="nav-text">SortedSet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#init-1"><span class="nav-number">5.1.</span> <span class="nav-text">init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#add-value-1"><span class="nav-number">5.2.</span> <span class="nav-text">add(value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#discard-value-1"><span class="nav-number">5.3.</span> <span class="nav-text">discard(value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#remove-value-1"><span class="nav-number">5.4.</span> <span class="nav-text">remove(value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clear-2"><span class="nav-number">5.5.</span> <span class="nav-text">clear()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pop-index-1-1"><span class="nav-number">5.6.</span> <span class="nav-text">pop(index&#x3D;-1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#count-value-1"><span class="nav-number">5.7.</span> <span class="nav-text">count(value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#difference-iterables"><span class="nav-number">5.8.</span> <span class="nav-text">difference(*iterables)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#difference-update-iterables"><span class="nav-number">5.9.</span> <span class="nav-text">difference_update(*iterables)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#intersection-iterables"><span class="nav-number">5.10.</span> <span class="nav-text">intersection(*iterables)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#intersection-update-iterables"><span class="nav-number">5.11.</span> <span class="nav-text">intersection_update(*iterables)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#symmetric-difference-other"><span class="nav-number">5.12.</span> <span class="nav-text">symmetric_difference(other)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#symmetric-difference-update-other"><span class="nav-number">5.13.</span> <span class="nav-text">symmetric_difference_update(other)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#union-iterables"><span class="nav-number">5.14.</span> <span class="nav-text">union(*iterables)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#update-iterables"><span class="nav-number">5.15.</span> <span class="nav-text">update(*iterables)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        ﻿<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cheungducknew</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">61.4k</span>
+  
+</div>
+
+
+  <!-- <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>-->
+
+
+
+  <!--<span class="post-meta-divider">|</span>-->
+
+
+
+  <!--<div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>-->
+
+
+
+
+
+
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("05/01/2020 12:00:00");//在此处修改你的建站时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒啦"; 
+    } 
+setInterval("createtime()",250);
+</script>
+
+
+<!-- 评论框美化 -->
+<style>
+    #comments .veditor{
+        min-height: 10rem;
+        background-image: url(https://cdn.jsdelivr.net/gh/cheungducknew/cdn@latest/img/util/comments_bg.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/cheungducknew/cdn@master/js/valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: false,
+        appId: '36ULMwVwnkdXTCIBPgLdQUy2-MdYXbMMI',
+        appKey: 'TprYVYmiCLWXUIl2QaJutboW',
+        placeholder: '建议在上方留下昵称和邮箱等信息，以便收到回复通知（以下三选一）：\n1、填写昵称与QQ邮箱（系统自动获取QQ头像）\n2、自定义填写昵称、邮箱、网址信息 \n3、匿名留言（不会收到留言回复通知，不推荐）',
+        avatar:'wavatar',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+    document.body.addEventListener('click', function(e) {
+    if (e.target.classList.contains('vsubmit')) {
+        const email = document.querySelector('input[type=email]');
+        const nick = document.querySelector('input[name=nick]');
+        const reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+        if (!email.value || !nick.value || !reg.test(email.value)) {
+            const str = `<div class="valert txt-center"><div class="vtext">请填写正确的昵称和邮箱！</div></div>`;
+            const vmark = document.querySelector('.vmark');
+            vmark.innerHTML = str;
+            vmark.style.display = 'block';
+
+            setTimeout(function() {
+                vmark.style.display = 'none';
+                vmark.innerHTML = '';
+            }, 2500);
+        }
+      }
+    });
+
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
+
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+<!-- 雪花特效 -->
+<script type="text/javascript" src="\js\snow.js"></script>
+
+<!-- 音乐播放器 -->
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script>
+
+
+

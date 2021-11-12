@@ -1,0 +1,1574 @@
+﻿<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-new.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-new.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="树状数组引入一个数总可写成：$num&#x3D;2^i + 2^j + 2^k,i&lt;j&lt;k$(参考二进制) 因此可以将[1,num]区间分成 $len&#x3D;2^i:[1,2^i]$ $len&#x3D;2^j:[2^i+1,2^j]$ $len&#x3D;2^k:[2^j+1,2^k]$ 树状数组（还有块状数组）就是这样将一个区间分成不同长度(一般长为2的幂次方)来进行维护的方法  树状数组也叫 Binary Inde">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构之树状数组">
+<meta property="og:url" content="http://ducknew.cf/posts/18d6c63e/index.html">
+<meta property="og:site_name" content="ducknew &#39;s blog">
+<meta property="og:description" content="树状数组引入一个数总可写成：$num&#x3D;2^i + 2^j + 2^k,i&lt;j&lt;k$(参考二进制) 因此可以将[1,num]区间分成 $len&#x3D;2^i:[1,2^i]$ $len&#x3D;2^j:[2^i+1,2^j]$ $len&#x3D;2^k:[2^j+1,2^k]$ 树状数组（还有块状数组）就是这样将一个区间分成不同长度(一般长为2的幂次方)来进行维护的方法  树状数组也叫 Binary Inde">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/cheungducknew/cdn@latest/img/2021.10/1001-1.jpg">
+<meta property="article:published_time" content="2021-10-01T06:42:10.872Z">
+<meta property="article:modified_time" content="2021-10-09T14:23:58.329Z">
+<meta property="article:author" content="cheungducknew">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/cheungducknew/cdn@latest/img/2021.10/1001-1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://ducknew.cf/posts/18d6c63e/"/>
+
+
+
+
+
+  <title>数据结构之树状数组 | ducknew 's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ducknew 's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">cs大三在读</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fa fa-link"></i> <br />
+            
+            友链
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ducknew.cf/posts/18d6c63e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cheungducknew">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/sword.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ducknew 's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构之树状数组</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-01T14:42:10+08:00">
+                2021-10-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-10-09T22:23:58+08:00">
+                2021-10-09
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/%E5%88%B7%E9%A2%98%E6%A8%A1%E6%9D%BF/" itemprop="url" rel="index">
+                    <span itemprop="name">刷题模板</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/18d6c63e/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/18d6c63e/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="树状数组引入"><a href="#树状数组引入" class="headerlink" title="树状数组引入"></a>树状数组引入</h1><p>一个数总可写成：$num=2^i + 2^j + 2^k,i&lt;j&lt;k$(参考二进制)</p>
+<p>因此可以将[1,num]区间分成</p>
+<p>$len=2^i:[1,2^i]$</p>
+<p>$len=2^j:[2^i+1,2^j]$</p>
+<p>$len=2^k:[2^j+1,2^k]$</p>
+<p>树状数组（还有块状数组）就是这样将一个区间分成不同长度(一般长为2的幂次方)来进行维护的方法</p>
+<ul>
+<li>树状数组也叫 Binary Indexed Tree，二进制索引树，树状数组里某个元素管理了原始输入数组多少数据是由下标决定的</li>
+<li>树状数组通常用于动态的维护前缀数组</li>
+<li>树状数组的特点是<strong>区间查询</strong>和<strong>单点更新</strong>均为<code>O(logn)</code></li>
+</ul>
+<h1 id="lowbit"><a href="#lowbit" class="headerlink" title="lowbit"></a>lowbit</h1><p>先看一个例子：<code>lowbit(44)=lowbit(101100B)=(100B)=4</code></p>
+<p>可以发现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">原码：101100</span><br><span class="line">取反：010011</span><br><span class="line">加一：010100</span><br><span class="line"></span><br><span class="line">原码&amp;取反+1：000100</span><br></pre></td></tr></table></figure>
+
+<p>所有，<code>lowbit(i)=i&amp;(~i+1)</code></p>
+<p>考虑到计算机以补码的形式存储整数，所以<code>lowbit(i)=i&amp;(-i)</code></p>
+<blockquote>
+<ul>
+<li>当x为0时结果为0</li>
+<li>x为奇数时，结果为1</li>
+<li>x为偶数时，结果为x中2的最大次方的因子</li>
+</ul>
+</blockquote>
+<h1 id="树状数组和原数组"><a href="#树状数组和原数组" class="headerlink" title="树状数组和原数组"></a>树状数组和原数组</h1><p><img src="https://cdn.jsdelivr.net/gh/cheungducknew/cdn@latest/img/2021.10/1001-1.jpg" alt="1001-1"></p>
+<p>数组数组与原数组关系：(注意数组数组下标从1开始)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">C[1]&#x3D;A[1]</span><br><span class="line">C[2]&#x3D;A[1]+A[2]</span><br><span class="line">C[3]&#x3D;A[3]</span><br><span class="line">C[4]&#x3D;A[1]+A[2]+A[3]+A[4]</span><br><span class="line">C[5]&#x3D;A[5]</span><br><span class="line">C[6]&#x3D;A[5]+A[6]</span><br><span class="line">C[7]&#x3D;A[7]</span><br><span class="line">C[8]&#x3D;A[1]+A[2]+A[3]+A[4]+A[5]+A[6]+A[7]+A[8]</span><br></pre></td></tr></table></figure>
+
+<p>总结规律，可以发现</p>
+<p><code>C[i]=A[i-lowbit(i)+1] + …… + A[i]</code></p>
+<h1 id="单点更新，区间查询"><a href="#单点更新，区间查询" class="headerlink" title="单点更新，区间查询"></a>单点更新，区间查询</h1><p>更新时，需要同时更新<code>A[i],A[i+lowbit(i)],A[i+2*lowbit(i)]……不超过最大值</code></p>
+<p>求和时，则累加<code>A[i]+A[i-lowbit(i)]+A[i-2*lowbit(i)]+……+A[1]</code></p>
+<p>例如，add(3,5)，需要寻找父节点，同时对A[3],A[4],A[8]做+5，可以发现3+lowbit(3)=4,4+lowbit(4)=8</p>
+<p>ask(7)时，需要寻找左上节点，同时对A[7],A[6],A[4]做累加，发现7-lowbit(7)=6,6-lowbit(6)=4</p>
+<h1 id="区间更新，单点查询"><a href="#区间更新，单点查询" class="headerlink" title="区间更新，单点查询"></a>区间更新，单点查询</h1><p>用树状数组维护一个差分数组b</p>
+<p>【l,r】+d：add(l,d) and add(r+1,-d)</p>
+<p>查询a[x]：ans=a[x]+ask[x]</p>
+<blockquote>
+<p>ask[x]即为a[x]的增量</p>
+</blockquote>
+<h1 id="区间更新，区间查询"><a href="#区间更新，区间查询" class="headerlink" title="区间更新，区间查询"></a>区间更新，区间查询</h1><p>用2个数状数组维护</p>
+<h1 id="代码模板"><a href="#代码模板" class="headerlink" title="代码模板"></a>代码模板</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class FenwickTree:</span><br><span class="line">    def __init__(self,nums):</span><br><span class="line">        self.nums&#x3D;[0]+nums	# 为了下标从1开始</span><br><span class="line">        n&#x3D;len(nums)	# 注意是nums,原数组长度</span><br><span class="line">        for i in range(1,n+1):	# O(n)时间的建立方法</span><br><span class="line">            j&#x3D;i+self.lowbit(i)</span><br><span class="line">            if j&lt;n+1:</span><br><span class="line">                self.nums[j]+&#x3D;self.nums[i]</span><br><span class="line"></span><br><span class="line">    def lowbit(self,i):</span><br><span class="line">        return i&amp;(-i)</span><br><span class="line"></span><br><span class="line">    def update(self,idx,val):</span><br><span class="line">        prev&#x3D;self.query(idx+1)-self.query(idx)	# 原数</span><br><span class="line">        idx+&#x3D;1	# 注意</span><br><span class="line">        change&#x3D;val-prev</span><br><span class="line">        while idx&lt;len(self.nums):</span><br><span class="line">            self.nums[idx]+&#x3D;change</span><br><span class="line">            idx+&#x3D;self.lowbit(idx)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def query(self,idx):</span><br><span class="line">        res&#x3D;0</span><br><span class="line">        while idx&gt;0:</span><br><span class="line">            res+&#x3D;self.nums[idx]</span><br><span class="line">            idx-&#x3D;self.lowbit(idx)</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
+
+<p>或者这个由<a href="https://leetcode-cn.com/problems/queries-on-a-permutation-with-key/solution/cha-xun-dai-jian-de-pai-lie-by-leetcode-solution/" target="_blank" rel="noopener">力扣官方题解</a>给出的版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class BIT:</span><br><span class="line">    def __init__(self, n):</span><br><span class="line">        self.n &#x3D; n</span><br><span class="line">        self.a &#x3D; [0] * (n + 1)</span><br><span class="line"></span><br><span class="line">    def lowbit(x):</span><br><span class="line">        return x &amp; (-x)</span><br><span class="line"></span><br><span class="line">    def query(self, idx):</span><br><span class="line">        res &#x3D; 0</span><br><span class="line">        while idx &gt; 0:</span><br><span class="line">            res +&#x3D; self.a[idx]</span><br><span class="line">            idx -&#x3D; self.lowbit(idx)</span><br><span class="line">        return res</span><br><span class="line"></span><br><span class="line">    def add(self, idx, delta):</span><br><span class="line">        while idx &lt;&#x3D; self.n:</span><br><span class="line">            self.a[idx] +&#x3D; delta</span><br><span class="line">            idx +&#x3D; self.lowbit(idx)</span><br><span class="line"></span><br><span class="line">    def update(self,idx,val):</span><br><span class="line">        prev&#x3D;self.query(idx+1)-self.query(idx)</span><br><span class="line">        change&#x3D;prev-val</span><br><span class="line">        self.add(idx,change)</span><br></pre></td></tr></table></figure>
+
+<p>以及我这个版本[🐕]</p>
+<ol>
+<li>本体</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">def lowbit(i):</span><br><span class="line">    return i&amp;(-i)</span><br><span class="line"></span><br><span class="line">def query(i):   # 找左上节点,sum(nums[:i])</span><br><span class="line">    res&#x3D;0</span><br><span class="line">    while i&gt;0:</span><br><span class="line">        res+&#x3D;base[i]</span><br><span class="line">        i-&#x3D;lowbit(i)</span><br><span class="line">    return res</span><br><span class="line"></span><br><span class="line">def add(i,val):  # 找父节点,nums[i-1]+val</span><br><span class="line">    while i&lt;&#x3D;n:	 # 注意</span><br><span class="line">        base[i]+&#x3D;val</span><br><span class="line">        i+&#x3D;lowbit(i)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">base&#x3D;[0]*(n+1)</span><br><span class="line">for i in range(n):  # 构造BIT,O(logn)构造时间</span><br><span class="line">    add(i+1,nums[i])</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">for i,v in enumerate(nums):</span><br><span class="line">	add(i+1,v)</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>DLC</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def update(self, index: int, val: int) -&gt; None:	# set nums[i]&#x3D;val</span><br><span class="line">    prev&#x3D;self.query(index+1)-self.query(index)</span><br><span class="line">    change&#x3D;val-prev</span><br><span class="line">    self.add(index+1,change)    # 别忘了idx+1</span><br><span class="line">    </span><br><span class="line">def sumRange(self, left: int, right: int) -&gt; int:</span><br><span class="line">	return self.query(right+1)-self.query(left)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>离散化</p>
+<blockquote>
+<p>考虑到「树状数组」的底层是数组（线性结构），为了避免开辟多余的「树状数组」空间，需要进行「离散化」；<br>「离散化」的作用是：针对数值的大小做一个排名的「映射」，把原始数据映射到 [1, len] 这个区间，这样「树状数组」底层的数组空间会更紧凑，更易于维护</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 去重方便离散化</span><br><span class="line">s &#x3D; list(set(nums))</span><br><span class="line"></span><br><span class="line"># 借助堆离散化</span><br><span class="line">heapq.heapify(s)</span><br><span class="line">rank_map&#x3D;dict()</span><br><span class="line">rank&#x3D;1</span><br><span class="line">while s:</span><br><span class="line">    rank_map[heapq.pop(s)]&#x3D;rank</span><br><span class="line">    rank+&#x3D;1</span><br></pre></td></tr></table></figure>
+
+
+
+<details>
+    <summary>树状数组练习题库</summary>
+    <a href="https://leetcode-cn.com/tag/binary-indexed-tree/problemset/" target="_blank" rel="noopener">力扣树状数组知识点题库</a>
+    <p>
+        https://www.luogu.com.cn/problem/P3374
+    </p>
+    <p>
+        https://vjudge.net/problem/POJ-3468
+    </p>
+</details>
+
+
+<details>
+    <summary>参考文章</summary>
+    <p>
+       https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/solution/shu-zhuang-shu-zu-by-liweiwei1419/ 
+    </p>
+    <p>
+        https://www.cnblogs.com/xenny/p/9739600.html
+    </p>
+</details>
+
+
+
+
+
+<h1 id="区域和检索-数组不可变"><a href="#区域和检索-数组不可变" class="headerlink" title="区域和检索 - 数组不可变"></a><a href="https://leetcode-cn.com/problems/range-sum-query-immutable/" target="_blank" rel="noopener">区域和检索 - 数组不可变</a></h1><blockquote>
+<p>这题可以直接用前缀和做</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class NumArray:</span><br><span class="line"></span><br><span class="line">    def __init__(self, nums: List[int]):</span><br><span class="line">        self.pre&#x3D;[0,*accumulate(nums)]</span><br><span class="line"></span><br><span class="line">    def sumRange(self, left: int, right: int) -&gt; int:</span><br><span class="line">        return self.pre[right+1]-self.pre[left]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Your NumArray object will be instantiated and called as such:</span><br><span class="line"># obj &#x3D; NumArray(nums)</span><br><span class="line"># param_1 &#x3D; obj.sumRange(left,right)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="区域和检索-数组可修改"><a href="#区域和检索-数组可修改" class="headerlink" title="区域和检索 - 数组可修改"></a><a href="https://leetcode-cn.com/problems/range-sum-query-mutable/" target="_blank" rel="noopener">区域和检索 - 数组可修改</a></h1><blockquote>
+<p>树状数组维护前缀和，直接用前缀和会超时</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class NumArray:</span><br><span class="line"></span><br><span class="line">    def __init__(self, nums: List[int]):</span><br><span class="line">        self.n&#x3D;len(nums)</span><br><span class="line">        self.base&#x3D;[0]*(self.n+1)</span><br><span class="line">        for i in range(self.n):</span><br><span class="line">            self.add(i+1,nums[i])</span><br><span class="line">        </span><br><span class="line">    def update(self, index: int, val: int) -&gt; None:</span><br><span class="line">        prev&#x3D;self.query(index+1)-self.query(index)</span><br><span class="line">        change&#x3D;val-prev</span><br><span class="line">        self.add(index+1,change)    # 别忘了idx+1，考虑题目要求</span><br><span class="line"></span><br><span class="line">    def sumRange(self, left: int, right: int) -&gt; int:</span><br><span class="line">        return self.query(right+1)-self.query(left)</span><br><span class="line"></span><br><span class="line">    def query(self,i):</span><br><span class="line">        res&#x3D;0</span><br><span class="line">        while i&gt;0:</span><br><span class="line">            res+&#x3D;self.base[i]</span><br><span class="line">            i-&#x3D;(i&amp;-i)</span><br><span class="line">        return res</span><br><span class="line">    </span><br><span class="line">    def add(self,i,val):</span><br><span class="line">        while i&lt;&#x3D;self.n:</span><br><span class="line">            self.base[i]+&#x3D;val</span><br><span class="line">            i+&#x3D;(i&amp;-i)</span><br><span class="line"></span><br><span class="line"># Your NumArray object will be instantiated and called as such:</span><br><span class="line"># obj &#x3D; NumArray(nums)</span><br><span class="line"># obj.update(index,val)</span><br><span class="line"># param_2 &#x3D; obj.sumRange(left,right)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="面试题-10-10-数字流的秩"><a href="#面试题-10-10-数字流的秩" class="headerlink" title="面试题 10.10. 数字流的秩"></a><a href="https://leetcode-cn.com/problems/rank-from-stream-lcci/" target="_blank" rel="noopener">面试题 10.10. 数字流的秩</a></h1><blockquote>
+<p>朴素的想法就是用cnt[x]记录x的个数，x的秩就是sum(cnt[:x])</p>
+<p>直接模拟会超时，所以用树状数组维护cnt</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class StreamRank:</span><br><span class="line"></span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.base&#x3D;[0]*50010</span><br><span class="line">    def track(self, x: int) -&gt; None:</span><br><span class="line">        def add(i,val):</span><br><span class="line">            while i&lt;&#x3D;50010:</span><br><span class="line">                self.base[i]+&#x3D;val</span><br><span class="line">                i+&#x3D;(i&amp;-i)</span><br><span class="line"></span><br><span class="line">        add(x+1,1)</span><br><span class="line"></span><br><span class="line">    def getRankOfNumber(self, x: int) -&gt; int:</span><br><span class="line">        def query(i):</span><br><span class="line">            res&#x3D;0</span><br><span class="line">            while i&gt;0:</span><br><span class="line">                res+&#x3D;self.base[i]</span><br><span class="line">                i-&#x3D;(i&amp;-i)</span><br><span class="line">            return res</span><br><span class="line"></span><br><span class="line">        return query(x+1)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="计算右侧小于当前元素的个数"><a href="#计算右侧小于当前元素的个数" class="headerlink" title="计算右侧小于当前元素的个数"></a><a href="https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/" target="_blank" rel="noopener">计算右侧小于当前元素的个数</a></h1><p>上来就是一个<strong>单调栈</strong>，没有意外直接<strong>WA</strong>了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 错误代码示范</span><br><span class="line">class Solution:</span><br><span class="line">    def countSmaller(self, nums: List[int]) -&gt; List[int]:</span><br><span class="line">        n&#x3D;len(nums)</span><br><span class="line">        res&#x3D;[0]*n</span><br><span class="line">        stack&#x3D;[]</span><br><span class="line">        for i in range(n-1,-1,-1):</span><br><span class="line">            while stack and stack[-1]&gt;&#x3D;nums[i]:</span><br><span class="line">                stack.pop()</span><br><span class="line">            res[i]&#x3D;len(stack)</span><br><span class="line">            stack.append(nums[i])</span><br><span class="line">        </span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
+
+<p>因为单调栈的性质，只能用来求Next greater element，而非计数</p>
+<p>这里应该用<strong>离散化</strong>+<strong>树状数组</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def countSmaller(self, nums: List[int]) -&gt; List[int]:</span><br><span class="line">        n&#x3D;len(nums)</span><br><span class="line">        # 特判</span><br><span class="line">        if n&#x3D;&#x3D; 0:</span><br><span class="line">            return []</span><br><span class="line">        if n &#x3D;&#x3D; 1:</span><br><span class="line">            return [0]</span><br><span class="line"></span><br><span class="line">        base&#x3D;[0]*(n+1)</span><br><span class="line">        def lowbit(i):</span><br><span class="line">            return i&amp;(-i)</span><br><span class="line">        </span><br><span class="line">        def query(i):</span><br><span class="line">            res&#x3D;0</span><br><span class="line">            while i&gt;0:</span><br><span class="line">                res+&#x3D;base[i]</span><br><span class="line">                i-&#x3D;lowbit(i)</span><br><span class="line">            return res</span><br><span class="line">        </span><br><span class="line">        def add(i,val):</span><br><span class="line">            while i&lt;&#x3D;n:</span><br><span class="line">                base[i]+&#x3D;val</span><br><span class="line">                i+&#x3D;lowbit(i)</span><br><span class="line">        </span><br><span class="line">        # 离散化</span><br><span class="line">        s&#x3D;list(set(nums))</span><br><span class="line">        heapq.heapify(s)</span><br><span class="line">        rank_map&#x3D;dict()</span><br><span class="line">        rank&#x3D;1</span><br><span class="line">        while s:</span><br><span class="line">            rank_map[heapq.heappop(s)]&#x3D;rank</span><br><span class="line">            rank+&#x3D;1</span><br><span class="line">        </span><br><span class="line">        # 求解</span><br><span class="line">        res&#x3D;[0]*n</span><br><span class="line">        for i in range(n-1,-1,-1):</span><br><span class="line">            rank&#x3D;rank_map[nums[i]]</span><br><span class="line">            add(rank,1)</span><br><span class="line">            res[i]&#x3D;query(rank-1)</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="统计作战单位数"><a href="#统计作战单位数" class="headerlink" title="统计作战单位数"></a><a href="https://leetcode-cn.com/problems/count-number-of-teams/" target="_blank" rel="noopener">统计作战单位数</a></h1><blockquote>
+<p>3元组问题，枚举中间点</p>
+<p>直接枚举的时间复杂度为$O(n^2)$，显然不够好</p>
+<p>用树状数组维护，可以达到O(nlogn)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def numTeams(self, rating: List[int]) -&gt; int:</span><br><span class="line">        n &#x3D; len(rating)</span><br><span class="line">        def add(i, val):</span><br><span class="line">            while i &lt;&#x3D; n:</span><br><span class="line">                base[i] +&#x3D; val</span><br><span class="line">                i +&#x3D; (i &amp; -i)</span><br><span class="line">        def query(i):</span><br><span class="line">            res &#x3D; 0</span><br><span class="line">            while i &gt; 0:</span><br><span class="line">                res +&#x3D; base[i]</span><br><span class="line">                i -&#x3D; (i &amp; -i)</span><br><span class="line">            return res</span><br><span class="line"></span><br><span class="line">        # 离散化</span><br><span class="line">        s &#x3D; list(set(rating))</span><br><span class="line">        heapq.heapify(s)</span><br><span class="line">        rank_map &#x3D; dict()</span><br><span class="line">        rank &#x3D; 1</span><br><span class="line">        while s:</span><br><span class="line">            rank_map[heapq.heappop(s)] &#x3D; rank</span><br><span class="line">            rank +&#x3D; 1</span><br><span class="line"></span><br><span class="line">		# 求解</span><br><span class="line">        i_less,i_more &#x3D; [0] * n,[0] * n</span><br><span class="line">        base &#x3D; [0] * (n + 1)</span><br><span class="line">        for i, val in enumerate(rating):</span><br><span class="line">            index &#x3D; rank_map[val]</span><br><span class="line">            i_less[i] &#x3D; query(index)</span><br><span class="line">            i_more[i] &#x3D; i - i_less[i]</span><br><span class="line">            add(index, 1)</span><br><span class="line">            </span><br><span class="line">        k_less,k_more &#x3D; [0] * n,[0] * n</span><br><span class="line">        base &#x3D; [0] * (n + 1)</span><br><span class="line">        for i in range(n - 1, -1, -1):</span><br><span class="line">            index &#x3D; rank_map[rating[i]]</span><br><span class="line">            k_less[i] &#x3D; query(index)</span><br><span class="line">            k_more[i] &#x3D; n - 1 - i - k_less[i]</span><br><span class="line">            add(index, 1)</span><br><span class="line">            </span><br><span class="line">        ans &#x3D; 0</span><br><span class="line">        for i in range(n):</span><br><span class="line">            ans +&#x3D; i_less[i] * k_more[i]</span><br><span class="line">            ans +&#x3D; i_more[i] * k_less[i]</span><br><span class="line">        return ans</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>树状数组是维护区间的一个工具</p>
+<p>你应该先想到一个结果数组，然后再设计树状数组去维护他</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>不要打赏，只求关注呀QAQ</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/background_pic.jpg" alt="cheungducknew 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/background_pic.jpg" alt="cheungducknew 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    cheungducknew
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://ducknew.cf/posts/18d6c63e/" title="数据结构之树状数组">http://ducknew.cf/posts/18d6c63e/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/55a50eac/" rel="next" title="数据结构之前缀树">
+                <i class="fa fa-chevron-left"></i> 数据结构之前缀树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/5964d91b/" rel="prev" title="数据结构之线段树">
+                数据结构之线段树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/sword.png"
+                alt="cheungducknew" />
+            
+              <p class="site-author-name" itemprop="name">cheungducknew</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <!--a href="/archives/%7C%7C%20archive"-->
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cheungducknew" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_45825073" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-copyright"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树状数组引入"><span class="nav-number">1.</span> <span class="nav-text">树状数组引入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lowbit"><span class="nav-number">2.</span> <span class="nav-text">lowbit</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#树状数组和原数组"><span class="nav-number">3.</span> <span class="nav-text">树状数组和原数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单点更新，区间查询"><span class="nav-number">4.</span> <span class="nav-text">单点更新，区间查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区间更新，单点查询"><span class="nav-number">5.</span> <span class="nav-text">区间更新，单点查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区间更新，区间查询"><span class="nav-number">6.</span> <span class="nav-text">区间更新，区间查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码模板"><span class="nav-number">7.</span> <span class="nav-text">代码模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区域和检索-数组不可变"><span class="nav-number">8.</span> <span class="nav-text">区域和检索 - 数组不可变</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区域和检索-数组可修改"><span class="nav-number">9.</span> <span class="nav-text">区域和检索 - 数组可修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#面试题-10-10-数字流的秩"><span class="nav-number">10.</span> <span class="nav-text">面试题 10.10. 数字流的秩</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算右侧小于当前元素的个数"><span class="nav-number">11.</span> <span class="nav-text">计算右侧小于当前元素的个数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#统计作战单位数"><span class="nav-number">12.</span> <span class="nav-text">统计作战单位数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">13.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        ﻿<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cheungducknew</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">61.4k</span>
+  
+</div>
+
+
+  <!-- <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>-->
+
+
+
+  <!--<span class="post-meta-divider">|</span>-->
+
+
+
+  <!--<div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>-->
+
+
+
+
+
+
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("05/01/2020 12:00:00");//在此处修改你的建站时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒啦"; 
+    } 
+setInterval("createtime()",250);
+</script>
+
+
+<!-- 评论框美化 -->
+<style>
+    #comments .veditor{
+        min-height: 10rem;
+        background-image: url(https://cdn.jsdelivr.net/gh/cheungducknew/cdn@latest/img/util/comments_bg.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/cheungducknew/cdn@master/js/valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: false,
+        appId: '36ULMwVwnkdXTCIBPgLdQUy2-MdYXbMMI',
+        appKey: 'TprYVYmiCLWXUIl2QaJutboW',
+        placeholder: '建议在上方留下昵称和邮箱等信息，以便收到回复通知（以下三选一）：\n1、填写昵称与QQ邮箱（系统自动获取QQ头像）\n2、自定义填写昵称、邮箱、网址信息 \n3、匿名留言（不会收到留言回复通知，不推荐）',
+        avatar:'wavatar',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+    document.body.addEventListener('click', function(e) {
+    if (e.target.classList.contains('vsubmit')) {
+        const email = document.querySelector('input[type=email]');
+        const nick = document.querySelector('input[name=nick]');
+        const reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+        if (!email.value || !nick.value || !reg.test(email.value)) {
+            const str = `<div class="valert txt-center"><div class="vtext">请填写正确的昵称和邮箱！</div></div>`;
+            const vmark = document.querySelector('.vmark');
+            vmark.innerHTML = str;
+            vmark.style.display = 'block';
+
+            setTimeout(function() {
+                vmark.style.display = 'none';
+                vmark.innerHTML = '';
+            }, 2500);
+        }
+      }
+    });
+
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
+
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+<!-- 雪花特效 -->
+<script type="text/javascript" src="\js\snow.js"></script>
+
+<!-- 音乐播放器 -->
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script>
+
+
+
